@@ -1,0 +1,155 @@
+﻿<Window x:Class="maths_app.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:maths_app"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Тренажер по математике" Height="600" Width="800">
+    <Grid x:Name="Tree" Background="#ffdadada">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="button_admin" Visibility="Hidden" Grid.Column="7" Grid.Row="9" Click="button_admin_click" HorizontalAlignment="Left" Content="Admin" />
+        <TreeView x:Name="tree_content" Visibility="Hidden" Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="2">
+            <TextBox>Содержание</TextBox>
+            <TreeViewItem x:Name="item_1" Header="Тема 1" Selected="TreeViewItem_Selected">
+                <TreeViewItem x:Name="item_1_1" Header="Подтема 1.1" Selected="TreeViewItem_Selected"/>
+                <TreeViewItem x:Name="item_1_2" Header="Подтема 1.2" Selected="TreeViewItem_Selected"/>
+                <TreeViewItem x:Name="item_1_3" Header="Подтема 1.3" Selected="TreeViewItem_Selected"/>
+                <TreeViewItem x:Name="item_1_4" Header="Подтема 1.4" Selected="TreeViewItem_Selected"/>
+            </TreeViewItem>
+            <TreeViewItem x:Name="item_2" Header="Тема 2">
+                <TreeViewItem x:Name="item_2_1" Header="Подтема 2.1">
+                    <TreeViewItem x:Name="item_2_1_1" Header="Подтема 2.1.1" />
+                    <TreeViewItem x:Name="item_2_1_2" Header="Подтема 2.1.2" />
+                    <TreeViewItem x:Name="item_2_1_3" Header="Подтема 2.1.3" />
+                </TreeViewItem>
+                <TreeViewItem x:Name="item_2_2" Header="Подтема 2.2">
+                    <TreeViewItem x:Name="item_2_2_1" Header="Подтема 2.2.1" />
+                    <TreeViewItem x:Name="item_2_2_2" Header="Подтема 2.2.2" />
+                    <TreeViewItem x:Name="item_2_2_3" Header="Подтема 2.2.3" />
+                </TreeViewItem>
+            </TreeViewItem>
+        </TreeView>
+        <Grid x:Name="grid_auth" Visibility="Hidden" Grid.Column="1" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="6">
+            <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="10" />
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="Добрый день!" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                    <Grid Margin="0 0 0 20">
+                        <Button x:Name="button_grid_auth_reg" HorizontalAlignment="Left" Content="Регистрация" Click="button_grid_auth_reg_click" />
+                        <Button x:Name="button_grid_auth_auth" HorizontalAlignment="Right" Content="Войти" Style="{StaticResource MaterialDesignFlatButton}"/>
+                    </Grid>
+                    <TextBox x:Name="textbox_grid_auth_login" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <PasswordBox x:Name="textbox_grid_auth_pass" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                    <Button Content="Войти в приложение" Margin="0 30" Click="button_grid_auth_enter"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Grid x:Name="grid_reg" Visibility="Hidden" Grid.Column="1" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="6">
+            <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="10" />
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="Добрый день!" FontSize="30" FontWeight="Bold" Margin="0 0 0 20"/>
+                    <Grid Margin="0 0 0 20">
+                        <Button x:Name="button_grid_reg_reg" HorizontalAlignment="Left" Content="Регистрация"/>
+                        <Button x:Name="button_grid_reg_auth" HorizontalAlignment="Right" Content="Войти" Click="button_grid_reg_auth_click" Style="{StaticResource MaterialDesignFlatButton}"/>
+                    </Grid>
+                    <TextBox x:Name="textbox_grid_reg_login" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <PasswordBox x:Name="textbox_grid_reg_pass" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                    <PasswordBox x:Name="textbox_grid_reg_pass_2" materialDesign:HintAssist.Hint="Повторите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                    <Button x:Name="button_reg" Content="Зарегистрироваться" Margin="0 30" Click="button_reg_click"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <FlowDocumentScrollViewer x:Name="doc_1_1" Visibility="Hidden" IsToolBarVisible="True" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="10">
+            <FlowDocument>
+                <Paragraph TextAlignment="Justify" FontSize="15" >
+                    У Отрывного Календаря всё было рассчитано: по одному листку на каждый день. А всего, стало быть, триста шестьдесят пять листков — ровно столько же, 
+                    сколько дней в году. И повесили его тоже с расчётом: строго посередине стены.
+
+                    «Почётное место…» — подумал Отрывной Календарь и даже немножко засмущался.
+
+                    Да и любой на его месте засмущался бы: шуточное ли дело — висеть у всех на виду! Тут хочешь не хочешь, а будешь следить за собой.
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <FlowDocumentScrollViewer x:Name="doc_1_1_test" Visibility="Hidden" IsToolBarVisible="True" Grid.Column="6" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="10">
+            <FlowDocument>
+                <Paragraph TextAlignment="Left">Задание 1.</Paragraph>
+                <BlockUIContainer FontSize="13">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Height="40" Padding="10">2 + 3 = ?</TextBlock>
+                            <TextBox x:Name="task_1_1_1" Background="white" Width="40" Height="30"></TextBox>
+                        </StackPanel>
+                        <Button x:Name="task_1_1_1_answer" Width="100" Click="answer_click">Ответ</Button>
+                    </StackPanel>
+                </BlockUIContainer>
+                <Paragraph TextAlignment="Left">Задание 2.</Paragraph>
+                <BlockUIContainer FontSize="13">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Height="40" Padding="10">3 + 2 = ?</TextBlock>
+                            <TextBox x:Name="task_1_1_2" Background="white" Width="40" Height="30"></TextBox>
+                        </StackPanel>
+                        <Button x:Name="task_1_1_2_answer" Width="100" Click="answer_click">Ответ</Button>
+                    </StackPanel>
+                </BlockUIContainer>
+                <Paragraph TextAlignment="Left">Задание 3.</Paragraph>
+                <BlockUIContainer FontSize="13">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Height="40" Padding="10">3 + 3 = ?</TextBlock>
+                            <TextBox Background="white" Width="40" Height="30"></TextBox>
+                        </StackPanel>
+                        <Button Width="60">Click Me</Button>
+                    </StackPanel>
+                </BlockUIContainer>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <FlowDocumentScrollViewer x:Name="part_1_2" Visibility="Hidden" IsToolBarVisible="True" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="10">
+            <FlowDocument>
+                <Paragraph TextAlignment="Justify" FontSize="15" >
+                    Уже через несколько минут Отрывной Календарь перезнакомился с обитателями квартиры: их было много — и они были такие разные! К
+                    аждый радушно поприветствовал его и представился. Отрывной Календарь всякий раз говорил: «Очень приятно!» — и тоже представлялся в ответ. 
+                    С ними ему предстояло прожить долгую и интересную жизнь, что Отрывной Календарь, конечно, ужасно радовало — и радость эта была прямо написана у него на лице.
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <FlowDocumentScrollViewer x:Name="part_1_3" Visibility="Hidden" IsToolBarVisible="True" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="10">
+            <FlowDocument>
+                <Paragraph TextAlignment="Justify" FontSize="15" >
+                    — Дайте-ка я прочту, что у Вас на лице написано, — присмотрелась к нему Картина-с-Противоположной-Стены и прочла: — «Радость». 
+                    А по какому поводу радость? — спросила она.
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+    </Grid>
+    
+</Window>

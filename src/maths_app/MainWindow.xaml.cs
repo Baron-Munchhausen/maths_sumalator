@@ -30,18 +30,6 @@ namespace maths_app
 			grid_auth.Visibility = Visibility.Visible;
 		}
 
-		private void button_admin_click(object sender, RoutedEventArgs e)
-		{
-			AdminWindow admin_window = new AdminWindow()
-			{
-				WindowStartupLocation = this.WindowStartupLocation,
-				Left = this.Left,
-				Top = this.Top
-			};
-			admin_window.Show();
-			//Hide();
-		}
-
 		private void button_grid_auth_reg_click(object sender, RoutedEventArgs e)
 		{
 			grid_auth.Visibility = Visibility.Hidden;
@@ -123,7 +111,13 @@ namespace maths_app
 			if (auth_user != null)
 			{
 				tree_content.Visibility = Visibility.Visible;
-				button_admin.Visibility = Visibility.Visible;
+
+				if (login == "admin")
+				{
+					item_admin.Visibility = Visibility.Visible;
+				}
+
+				//button_admin.Visibility = Visibility.Visible;
 				grid_auth.Visibility = Visibility.Hidden;
 				grid_reg.Visibility = Visibility.Hidden;
 				current_user_id = auth_user.id;
@@ -173,6 +167,10 @@ namespace maths_app
 				if (obj_doc != null)
 				{
 					((FlowDocumentScrollViewer)obj_doc).Visibility = Visibility.Visible;
+					if (((FlowDocumentScrollViewer)obj_doc).Name == "doc_admin")
+					{
+						update_doc_admin();
+					}
 				}
 
 				// Находим и включаем видимость нужного документа с тестами
@@ -182,6 +180,48 @@ namespace maths_app
 					((FlowDocumentScrollViewer)obj_test).Visibility = Visibility.Visible;
 				}
 			}
+		}
+
+		private void update_doc_admin()
+		{
+			if (trg_data.Rows.Count > 0)
+			{
+				trg_data.Rows.RemoveRange(0, trg_data.Rows.Count);
+			}
+
+			List<User_statistic> user_stat = db.User_statistics.ToList();
+
+			foreach (User_statistic us in user_stat)
+			{
+				TableRow tr = new TableRow();
+				tr.Cells.Add(new TableCell(new Paragraph(new Run(us.user_id.ToString()))));
+				tr.Cells.Add(new TableCell(new Paragraph(new Run(us.login.ToString()))));
+				tr.Cells.Add(new TableCell(new Paragraph(new Run(us.count_tasks.ToString()))));
+				tr.Cells.Add(new TableCell(new Paragraph(new Run(us.sum_rights.ToString()))));
+				Button _button = new Button();
+				_button.Name = "button_" + us.user_id.ToString();
+				_button.Content = "Удалить";
+				_button.Click += user_stat_remove;
+				tr.Cells.Add(new TableCell(new BlockUIContainer(_button)));
+
+				trg_data.Rows.Add(tr);
+			}
+		}
+
+		private void user_stat_remove(object sender, RoutedEventArgs e)
+		{
+			User _user = db.Users.Where(u => u.id == Convert.ToInt32(((Button)sender).Name.ToString().Replace("button_", ""))).FirstOrDefault();
+			db.Users.Remove(_user);
+			db.SaveChanges();
+
+			List<User_answer> user_answers = db.User_answers.Where(u => u.User_id == Convert.ToInt32(((Button)sender).Name.ToString().Replace("button_", ""))).ToList();
+			foreach (User_answer ua in user_answers)
+			{
+				db.User_answers.Remove(ua);
+			}
+			db.SaveChanges();
+
+			update_doc_admin();
 		}
 
 		private void answer_click(object sender, RoutedEventArgs e)
@@ -209,6 +249,9 @@ namespace maths_app
 
 				case "task_1_1_2":
 					right_answer = "5";
+					break;
+				case "task_1_1_3":
+					right_answer = "6";
 					break;
 			}
 

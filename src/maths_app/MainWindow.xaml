@@ -30,7 +30,6 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button x:Name="button_admin" Visibility="Hidden" Grid.Column="7" Grid.Row="9" Click="button_admin_click" HorizontalAlignment="Left" Content="Admin" />
         <TreeView x:Name="tree_content" Visibility="Hidden" Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="2">
             <TextBox>Содержание</TextBox>
             <TreeViewItem x:Name="item_1" Header="Тема 1" Selected="TreeViewItem_Selected">
@@ -50,6 +49,9 @@
                     <TreeViewItem x:Name="item_2_2_2" Header="Подтема 2.2.2" />
                     <TreeViewItem x:Name="item_2_2_3" Header="Подтема 2.2.3" />
                 </TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem x:Name="item_admin" Visibility="Hidden" Header="Администрирование" Selected="TreeViewItem_Selected">
+                
             </TreeViewItem>
         </TreeView>
         <Grid x:Name="grid_auth" Visibility="Hidden" Grid.Column="1" Grid.Row="0" Grid.RowSpan="10" Grid.ColumnSpan="6">
@@ -126,14 +128,14 @@
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Height="40" Padding="10">3 + 3 = ?</TextBlock>
-                            <TextBox Background="white" Width="40" Height="30"></TextBox>
+                            <TextBox x:Name="task_1_1_3" Background="white" Width="40" Height="30"></TextBox>
                         </StackPanel>
-                        <Button Width="60">Click Me</Button>
+                        <Button x:Name="task_1_1_3_answer" Width="100" Click="answer_click">Ответ</Button>
                     </StackPanel>
                 </BlockUIContainer>
             </FlowDocument>
         </FlowDocumentScrollViewer>
-        <FlowDocumentScrollViewer x:Name="part_1_2" Visibility="Hidden" IsToolBarVisible="True" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="10">
+        <FlowDocumentScrollViewer x:Name="doc_1_2" Visibility="Hidden" IsToolBarVisible="True" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="10">
             <FlowDocument>
                 <Paragraph TextAlignment="Justify" FontSize="15" >
                     Уже через несколько минут Отрывной Календарь перезнакомился с обитателями квартиры: их было много — и они были такие разные! К
@@ -142,12 +144,40 @@
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentScrollViewer>
-        <FlowDocumentScrollViewer x:Name="part_1_3" Visibility="Hidden" IsToolBarVisible="True" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="10">
+        <FlowDocumentScrollViewer x:Name="doc_1_3" Visibility="Hidden" IsToolBarVisible="True" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="10">
             <FlowDocument>
                 <Paragraph TextAlignment="Justify" FontSize="15" >
                     — Дайте-ка я прочту, что у Вас на лице написано, — присмотрелась к нему Картина-с-Противоположной-Стены и прочла: — «Радость». 
                     А по какому поводу радость? — спросила она.
                 </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <FlowDocumentScrollViewer x:Name="doc_admin" Visibility="Hidden" IsToolBarVisible="True" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="10">
+            <FlowDocument>
+                <Paragraph TextAlignment="Center" FontSize="15">Пользователи</Paragraph>
+                <Table x:Name="statistics">
+                    <TableRowGroup x:Name="trg_headline" Background="LightBlue" FontWeight="Bold" FontSize="10">
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>user_id</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>login</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>Всего</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>Правильных</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>   </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                    <TableRowGroup x:Name="trg_data">
+                    </TableRowGroup>
+                </Table>
             </FlowDocument>
         </FlowDocumentScrollViewer>
     </Grid>

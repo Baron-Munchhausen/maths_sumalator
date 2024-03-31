@@ -61,6 +61,13 @@ namespace maths_app
 				textbox_grid_reg_login.Background = Brushes.Transparent;
 			}
 
+			User _user = db.Users.Where(u => u.Login == login).FirstOrDefault();
+			if (_user != null)
+			{
+				textbox_grid_reg_login.ToolTip = "Такой пользователь уже существует!";
+				error = false;
+			}
+
 			if (pass.Length < 5)
 			{
 				textbox_grid_reg_pass.ToolTip = "Пароль меньше пяти символов!";
